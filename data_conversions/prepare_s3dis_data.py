@@ -28,7 +28,7 @@ def main():
     args = parser.parse_args()
     print(args)
 
-    root = args.folder if args.folder else '../../data/s3dis'
+    root = args.folder if args.folder else '/home/houhao/paper_implementation/data/S3DIS/prepare_label_rgb'
     max_point_num = args.max_point_num
 
     batch_size = 2048
@@ -38,7 +38,7 @@ def main():
     label_seg = np.zeros((batch_size, max_point_num), dtype=np.int32)
     indices_split_to_full = np.zeros((batch_size, max_point_num), dtype=np.int32)
 
-    for area_idx in range(1, 7):
+    for area_idx in range(1,7): # Only area 1 used. 
         folder = os.path.join(root, 'Area_%d' % area_idx)
         datasets = [dataset for dataset in os.listdir(folder)]
         for dataset_idx, dataset in enumerate(datasets):

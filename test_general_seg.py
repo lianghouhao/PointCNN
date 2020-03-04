@@ -16,7 +16,6 @@ import numpy as np
 import tensorflow as tf
 from datetime import datetime
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--filelist', '-t', help='Path to input .h5 filelist (.txt)', required=True)

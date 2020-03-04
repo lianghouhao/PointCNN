@@ -5,14 +5,18 @@ from __future__ import division
 from __future__ import print_function
 
 import os,sys
+sys.path.append('/home/houhao/paper_implementation/PointCNN')
+import data_utils
+
 import plyfile
 import numpy as np
 import argparse
 import h5py
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--datafolder', '-d', help='Path to input *_pred.h5', required=True)
+    parser.add_argument('--datafolder', '-d', help='Path to input *_pred.h5', required=False, default = '/home/houhao/paper_implementation/data/S3DIS/prepare_label_rgb/Area_1/')
     args = parser.parse_args()
     print(args)
 
@@ -53,6 +57,17 @@ def main():
 
         np.savetxt(output_path,final_label,fmt='%d')
         print("saved to ",output_path)
+
+        # Visulization, creating .ply file
+        pts_path = os.path.join(args.datafolder, category)
+        pts = np.load(pts_path + "/xyzrgb.npy")
+        xyz = pts[:, :3]
+
+        filename = str(category) +  "_pred.ply"
+        filepath_label_ply = os.path.join(args.datafolder, category, filename)
+        data_utils.save_ply_property(xyz, final_label, 21, filepath_label_ply)
+        
+
 
 
 if __name__ == '__main__':

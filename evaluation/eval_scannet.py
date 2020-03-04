@@ -93,6 +93,11 @@ def main():
 
         label = labels_all[room_id]
         pred = pickle_dict[room_id]["final_label"]
+        
+        fileidx = str(room_id) + ".ply" # added line
+        filepath_label_ply = os.path.join(args.datafolder + fileidx) # added line
+        data_utils.save_ply_property(pts, pred, 21, filepath_label_ply) # added line
+        
         data_num = pts.shape[0]
 
         # compute pts acc (ignore label 0 which is scannet unannotated)

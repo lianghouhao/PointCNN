@@ -3,9 +3,9 @@ import math
 
 num_class = 13
 
-sample_num = 2048
+sample_num = 1024
 
-batch_size = 16
+batch_size = 4
 
 num_epochs = 1024
 

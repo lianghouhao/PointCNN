@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
     print(args)
 
-    root = args.folder if args.folder else '../../data/s3dis/'
+    root = args.folder if args.folder else '/home/houhao/paper_implementation/data/S3DIS/prepare_label_rgb/'
 
     area_h5s = [[] for _ in range(6)]
     for area_idx in range(1, 7):
@@ -34,8 +34,8 @@ def main():
                             if filename.endswith('.h5')]
             area_h5s[area_idx - 1].extend(filename_h5s)
 
-    for area_idx in range(1, 7):
-        train_h5 = [filename for idx in range(6) if idx + 1 != area_idx for filename in area_h5s[idx]]
+    for area_idx in range(1,7): # only use area 1
+        train_h5 = [filename for idx in range(1) if idx + 1 != area_idx for filename in area_h5s[idx]]
         random.shuffle(train_h5)
         train_list = os.path.join(root, 'train_files_for_val_on_Area_%d.txt' % area_idx)
         print('{}-Saving {}...'.format(datetime.now(), train_list))

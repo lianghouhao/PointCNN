@@ -13,7 +13,7 @@ import numpy as np
 gt_label_filenames = []
 pred_label_filenames = []
 
-DEFAULT_DATA_DIR = '../../data/s3dis'
+DEFAULT_DATA_DIR = '/home/houhao/paper_implementation/data/S3DIS/prepare_label_rgb/'
 NUM_CLASSES = 13
 
 p = argparse.ArgumentParser()
